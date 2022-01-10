@@ -6,6 +6,7 @@ name = "pypi"
 [packages]
 loguru = "*"
 numpy = "*"
+graphviz = "*"
 
 [dev-packages]
 commitizen = "*"
