@@ -1,5 +1,6 @@
 import os
 
+import numpy as np
 from loguru import logger
 from graphviz import Digraph
 
@@ -54,3 +55,7 @@ def visualize_directed_graph_with_graphviz(graph: directedGraph, dataset_name: s
         dot.edge(f'{src}', f'{dst}')
 
     dot.render(filename, f"./output/{dataset_name}/gv_images", format='jpg')
+
+
+def output_np_ndarray(array: np.ndarray, filepath: str):
+    np.savetxt(filepath, array if len(array.shape) > 1 else (array,), "%f")
