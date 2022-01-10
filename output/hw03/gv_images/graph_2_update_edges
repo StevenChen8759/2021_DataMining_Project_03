@@ -1,0 +1,18 @@
+digraph graph_2_update_edges {
+	0 [label=1]
+	1 [label=2]
+	2 [label=3]
+	3 [label=4]
+	4 [label=5]
+	0 -> 1
+	0 -> 2
+	0 -> 3
+	0 -> 4
+	1 -> 0
+	1 -> 2
+	2 -> 0
+	2 -> 3
+	3 -> 0
+	3 -> 4
+	4 -> 0
+}
