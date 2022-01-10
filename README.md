@@ -38,3 +38,10 @@ $ make run
 $ make graph_adjust
 ...
 ```
+5. If you want to view-up repo within generated output files, run the git command below.
+```
+git checkout -b repo_with_output_files original/repo_with_output_files  # First time run, create local branch.
+```
+```
+git checkout repo_with_output_files  # Branch already exists, checkout to this branch.
+```
