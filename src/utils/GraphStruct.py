@@ -54,3 +54,9 @@ class directedGraph(object):
 
     def get_vertex_mapper(self) -> List[Any]:
         return self.vertex_mapper
+
+    def get_edges(self) -> List[Tuple[int, int]]:
+        source, destination = np.where(self.__adjmat == 1)
+        return [
+            (src, dst) for src, dst in zip(source, destination)
+        ]
