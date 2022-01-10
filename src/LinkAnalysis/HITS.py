@@ -31,7 +31,6 @@ def evaluate_HITS_new_auth_and_hubs(
     return (auth_new / np.sum(auth_new)), (hubs_new / np.sum(hubs_new))
 
 
-
 def directedGraph_HITS(
     input_graph: directedGraph,
     converge_threshold: float = 1e-6,
@@ -58,10 +57,6 @@ def directedGraph_HITS(
             hubs_array, hubs_array_new
         )
 
-        print(auth_array_new)
-        print(hubs_array_new)
-        print(f"[{iter_cnt}] -> {converge_score_new}")
-
         if converge_score_new <= converge_threshold:
             logger.debug(f"Converged after {iter_cnt} iterations, score: {converge_score_new:.2f}")
             break
@@ -77,6 +72,5 @@ def directedGraph_HITS(
         converge_score = converge_score_new
 
         iter_cnt += 1
-        # print("--------------------------")
 
     return auth_array, hubs_array

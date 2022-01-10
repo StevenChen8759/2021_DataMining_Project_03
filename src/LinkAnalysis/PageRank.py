@@ -28,10 +28,7 @@ def evaluate_PageRank_new_pgrank(
 
         pgrank_sum = sum(
             pgrank_new[idx] / graph.out_degree(idx, True) for idx in in_nodes_idx
-
         )
-        # print(f"Pgrank_sum of {i} -> {pgrank_sum:.2f}")
-        # print(f"Random Jumping: {random_jumping}")
 
         pgrank_new[i] = damping_factor / vertex_count + (1 - damping_factor) * pgrank_sum
 
@@ -63,11 +60,6 @@ def directedGraph_PageRank(
         converge_score_new = evaluate_converge_score_pgrank(
             pgrank_array, pgrank_array_new,
         )
-
-        print(f"Iteration: {iter_cnt}, convergence score: {converge_score_new}")
-        print(f"original pgrank-> {pgrank_array}")
-        print(f"pgrank result -> {pgrank_array_new}")
-        print("-------------------------------------")
 
         if converge_score_new <= converge_threshold:
             logger.debug(f"Converged after {iter_cnt} iterations, score: {converge_score_new:.2f}")

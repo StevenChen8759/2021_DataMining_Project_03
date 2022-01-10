@@ -49,7 +49,7 @@ def directedGraph_SimRank(
     input_graph: directedGraph,
     decay_factor: float = 0.9,
     converge_threshold: float = 1e-3,
-    max_iter = 10,
+    max_iter = 100,
 ) -> np.ndarray:
     # Initialization
     vertex_count = input_graph.vertex_count()
@@ -72,11 +72,6 @@ def directedGraph_SimRank(
             simrank_array,
             simrank_array_new,
         )
-
-        print(f"Iteration: {iter_cnt}, convergence score: {converge_score_new}")
-        print(f"original simrank -> \n{simrank_array}")
-        print(f"simrank result -> \n{simrank_array_new}")
-        print("-------------------------------------")
 
         if converge_score_new <= converge_threshold:
             logger.debug(f"Converged after {iter_cnt} iterations, score: {converge_score_new:.2f}")
