@@ -1,6 +1,15 @@
+import os
+
 from loguru import logger
+from graphviz import Digraph
 
 from utils.GraphStruct import directedGraph
+
+
+def mkdir_conditional(dirname: str):
+
+    if not os.path.isdir(dirname):
+        os.mkdir(dirname)
 
 
 def read_txt_as_a_graph(filename: str) -> directedGraph:
@@ -14,8 +23,6 @@ def read_txt_as_a_graph(filename: str) -> directedGraph:
             for edge_text in graph_file.readlines() # Read all lines as edges
         ]
 
-    # print(edges)
-
     vertexes = sorted(  # Sort items in dictionary order
         list(           # Get list from set for uniqueness of elements
             set(        # Filter duplicated items using set structure
@@ -27,15 +34,23 @@ def read_txt_as_a_graph(filename: str) -> directedGraph:
         )
     )
 
-    # edges_for_graph = [
-    #     (
-    #         vertexes.index(edge[0]),
-    #         vertexes.index(edge[1]),
-    #     )
-    #     for edge in edges
-    # ]
-
     return directedGraph(
         vertexes,
         edges,
     )
+
+
+def visualize_directed_graph_with_graphviz(graph: directedGraph, dataset_name: str, filename: str):
+
+    mkdir_conditional(f"./output/{dataset_name}")
+    mkdir_conditional(f"./output/{dataset_name}/gv_images")
+
+    dot = Digraph(f'{filename}')
+
+    for i, vertex in enumerate(graph.get_vertex_mapper()):
+        dot.node(f"{i}", f"{vertex}")
+
+    for src, dst in graph.get_edges():
+        dot.edge(f'{src}', f'{dst}')
+
+    dot.render(filename, f"./output/{dataset_name}/gv_images", format='jpg')
